@@ -21,9 +21,9 @@
     --paper: #FAF7F2;
     --ice: #DCE6FB;
     --line: #0B1E3D14;
-  --footer-bg: #000000; ;   /* 👈 troque aqui pra mudar a cor do footer */
-  --footer-text: var(--paper);
-}
+    --footer-bg: var(--ice);   /* 👈 troque aqui pra mudar a cor do footer */
+    --footer-text: var(--navy);
+  }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html {
@@ -63,7 +63,7 @@
     border-radius: 4px;
   }
 
-  /* ===== CURSOR GLOW (ambient, subtle) ===== */
+  /* ===== CURSOR GLOW ===== */
   .cursor-glow {
     position: fixed;
     width: 420px; height: 420px;
@@ -523,11 +523,11 @@
   }
 
   /* ===== DEPOIMENTOS — esteira infinita ===== */
-.esteira-section {
-  background: #2852ad98;
-  padding: 110px 0;
-  overflow: hidden;
-}
+  .esteira-section {
+    background: #2852ad98;
+    padding: 110px 0;
+    overflow: hidden;
+  }
   .esteira-track-wrap {
     margin-top: 56px;
     position: relative;
@@ -631,37 +631,36 @@
   .btn-on-dark:hover { transform: translateY(-2px) scale(1.02); }
 
   .cta-final-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-.cta-final-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+  .cta-final-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 
-.cta-final-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(11, 30, 61, 0.85); /* var(--navy) com opacidade */
-}
+  .cta-final-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 30, 61, 0.85);
+  }
 
   /* ===== FOOTER ===== */
-  footer { padding: 44px 0; border-top: 1px solid var(--line); }
+  footer {
+    padding: 44px 0;
+    border-top: 1px solid var(--line);
+    background: var(--footer-bg);
+    color: var(--footer-text);
+  }
   .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
   .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 700; }
-  .footer-meta { font-size: 13px; color: var(--navy-faint); }
-
-  footer {
-  padding: 44px 0;
-  border-top: 1px solid var(--line);
-  background: var(--ice);
-}
+  .footer-meta { font-size: 13px; color: var(--footer-text); opacity: 0.6; }
 
   /* ===== REVEAL ===== */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -674,62 +673,49 @@
     section { padding: 80px 0; }
     .bento { grid-template-columns: 1fr; }
     .bento-card.lg { grid-column: span 1; }
-    .hero { padding: 130px 0 60px; min-height: auto; }
-    .hero-bg-shape { width: 600px; height: 600px; right: -240px; }
     .hero-stats { gap: 32px; flex-wrap: wrap; }
     .t-card { width: 300px; }
     .cursor-glow { display: none; }
 
-    /* ---- HERO EMPILHADO NO MOBILE ---- */
-    .hero-bg-media::after {
-      background: linear-gradient(
-        to bottom,
-        var(--paper) 0%,
-        var(--paper) 38%,
-        rgba(250,247,242,0.9) 55%,
-        rgba(250,247,242,0.4) 75%,
-        transparent 100%
-      );
-    }
-    .hero-bg-media img {
-      object-position: center 30%;
-    }
-  
-/* ===== RESPONSIVE ===== */
-  @media (max-width: 900px) {
-    .wrap { padding: 0 22px; }
-    section { padding: 80px 0; }
-    .bento { grid-template-columns: 1fr; }
-    .bento-card.lg { grid-column: span 1; }
-    .hero { padding: 130px 0 60px; min-height: auto; }
-    .hero-bg-shape { width: 600px; height: 600px; right: -240px; }
-    .hero-stats { gap: 32px; flex-wrap: wrap; }
-    .t-card { width: 300px; }
-    .cursor-glow { display: none; }
-Sim, confirmado — falta a chave e tem chaves sobrando no final. Deixa eu te mandar exatamente como deve ficar, copia e cola esse bloco inteiro substituindo o que você tem:
-css    /* ---- HERO EMPILHADO NO MOBILE ---- */
-    .hero-bg-media::after {
-      background: linear-gradient(
-        to bottom,
-        var(--paper) 0%,
-        var(--paper) 38%,
-        rgba(250,247,242,0.9) 55%,
-        rgba(250,247,242,0.4) 75%,
-        transparent 100%
-      );
-    }
-    .hero-bg-media img {
-      object-position: 45% center;
+    /* ---- HERO COM IMAGEM ESPECÍFICA PRO MOBILE ---- */
+    .hero {
+      aspect-ratio: 1080 / 1920;
+      height: auto;
+      min-height: 0;
+      padding: 130px 0 60px;
     }
 
-    /* ---- IMAGENS DE FUNDO NO MOBILE ---- */
+    .hero-bg-shape { width: 600px; height: 600px; right: -240px; }
+
+    .hero-bg-media::after {
+      background: linear-gradient(
+        to bottom,
+        var(--paper) 0%,
+        rgba(250,247,242,0.85) 32%,
+        rgba(250,247,242,0.45) 55%,
+        transparent 78%
+      );
+    }
+
+    .hero-stats .stat-num {
+      color: #fff;
+      text-shadow: 0 0 12px rgba(46,95,232,0.9), 0 0 28px rgba(46,95,232,0.6), 0 2px 6px rgba(0,0,0,0.35);
+    }
+
+    .hero-stats .stat-label {
+      color: #fff;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.45);
+    }
+
+    .hero-bg-media img {
+      opacity: 0.60;
+    }
+
+    /* ---- OUTRAS IMAGENS DE FUNDO NO MOBILE ---- */
     .servicos-bg img { object-position: center 20%; }
     .processo-bg img { object-position: center 40%; }
-    .faq-bg img { object-position: center top; }
     .cta-final-bg img { object-position: center 60%; }
-
   }
-
 </style>
 </head>
 <body>
@@ -747,7 +733,10 @@ css    /* ---- HERO EMPILHADO NO MOBILE ---- */
 <section class="hero">
 
   <div class="hero-bg-media" aria-hidden="true">
-    <img src="hero.png" alt="">
+    <picture>
+      <source media="(min-width: 901px)" srcset="hero.png">
+      <img src="hero-mobile.png" alt="">
+    </picture>
   </div>
   <div class="hero-bg-shape" aria-hidden="true"></div>
   <div class="grid-overlay" aria-hidden="true"></div>
