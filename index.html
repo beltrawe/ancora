@@ -694,6 +694,40 @@
     .hero-bg-media img {
       object-position: center 30%;
     }
+  
+/* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 22px; }
+    section { padding: 80px 0; }
+    .bento { grid-template-columns: 1fr; }
+    .bento-card.lg { grid-column: span 1; }
+    .hero { padding: 130px 0 60px; min-height: auto; }
+    .hero-bg-shape { width: 600px; height: 600px; right: -240px; }
+    .hero-stats { gap: 32px; flex-wrap: wrap; }
+    .t-card { width: 300px; }
+    .cursor-glow { display: none; }
+
+    /* ---- HERO EMPILHADO NO MOBILE ---- */
+    .hero-bg-media::after {
+      background: linear-gradient(
+        to bottom,
+        var(--paper) 0%,
+        var(--paper) 38%,
+        rgba(250,247,242,0.9) 55%,
+        rgba(250,247,242,0.4) 75%,
+        transparent 100%
+      );
+    }
+    .hero-bg-media img {
+      object-position: center 30%;
+    }
+
+    /* ---- IMAGENS DE FUNDO NO MOBILE ---- */
+    .servicos-bg img { object-position: center 20%; }
+    .processo-bg img { object-position: center 40%; }
+    .faq-bg img { object-position: center top; }
+    .cta-final-bg img { object-position: center 60%; }
+  }
   }
 </style>
 </head>
